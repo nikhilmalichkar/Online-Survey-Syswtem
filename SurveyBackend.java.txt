@@ -1,0 +1,25 @@
+SurveyBackend.java
+
+package Nikhil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class SurveyBackend {
+    public boolean saveSurveyResponse(String rating, String recommend, String comments) {
+        String insertQuery = "INSERT INTO survey_responses (rating, recommend, comments) VALUES (?, ?, ?)";
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+
+            statement.setString(1, rating);
+            statement.setString(2, recommend);
+            statement.setString(3, comments);
+
+            int rowsInserted = statement.executeUpdate();
+            return rowsInserted > 0; // Return true if data is successfully inserted
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}

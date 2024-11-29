@@ -1,0 +1,75 @@
+MainProgram.java
+
+package Nikhil;
+
+import java.util.Scanner;
+
+
+public class MainProgram {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("===== Main Menu =====");
+            System.out.println("1. Admin Login");
+            System.out.println("2. Customer Feedback Survey");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    runAdminLogin(scanner);
+                    break;
+                case 2:
+                    runSurveySystem(scanner);
+                    break;
+                case 3:
+                    System.out.println("Exiting... Goodbye!");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    // Method to handle Admin Login
+    private static void runAdminLogin(Scanner scanner) {
+        System.out.println("===== Admin Login =====");
+        System.out.print("Enter Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter Password: ");
+        String password = scanner.nextLine();
+
+        AdminBackend backend = new AdminBackend();
+        if (backend.authenticateAdmin(username, password)) {
+            System.out.println("Login Successful!");
+        } else {
+            System.out.println("Invalid Credentials.");
+        }
+    }
+
+    // Method to handle Customer Feedback Survey
+    private static void runSurveySystem(Scanner scanner) {
+        System.out.println("===== Customer Feedback Survey =====");
+
+        System.out.println("Rate our service (Excellent, Good, Average, Poor): ");
+        String rating = scanner.nextLine();
+
+        System.out.println("Would you recommend us? (Yes/No): ");
+        String recommend = scanner.nextLine();
+
+        System.out.println("Any additional comments: ");
+        String comments = scanner.nextLine();
+
+        SurveyBackend backend = new SurveyBackend();
+        if (backend.saveSurveyResponse(rating, recommend, comments)) {
+            System.out.println("Thank you for your feedback!");
+        } else {
+            System.out.println("Error saving feedback. Try again.");
+        }
+    }
+}

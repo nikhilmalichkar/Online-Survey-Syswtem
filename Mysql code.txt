@@ -1,0 +1,26 @@
+Mysql code
+
+
+CREATE DATABASE OnlineSurvey;
+Use OnlineSurvey;
+
+
+CREATE TABLE authen (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE survey_responses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rating VARCHAR(50),
+    recommend VARCHAR(3),
+    comments TEXT
+);
+
+INSERT INTO authen
+values
+(1, "Nik", "pass");
+
+SELECT * FROM survey_responses;

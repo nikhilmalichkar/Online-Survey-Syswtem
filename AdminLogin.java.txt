@@ -1,0 +1,26 @@
+AdminLogin.java
+
+package Nikhil;
+
+import java.util.Scanner;
+
+public class AdminLogin {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Admin Login");
+        System.out.print("Enter Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter Password: ");
+        String password = scanner.nextLine();
+
+        AdminBackend backend = new AdminBackend();
+        if (backend.authenticateAdmin(username, password)) {
+            System.out.println("Login Successful!");
+        } else {
+            System.out.println("Invalid Credentials.");
+        }
+
+        scanner.close();
+    }
+}

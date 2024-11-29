@@ -1,0 +1,31 @@
+SurveySystem.java
+
+package Nikhil;
+
+import java.util.Scanner;
+
+public class SurveySystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Customer Feedback Survey");
+
+        System.out.println("Rate our service (Excellent, Good, Average, Poor): ");
+        String rating = scanner.nextLine();
+
+        System.out.println("Would you recommend us? (Yes/No): ");
+        String recommend = scanner.nextLine();
+
+        System.out.println("Any additional comments: ");
+        String comments = scanner.nextLine();
+
+        SurveyBackend backend = new SurveyBackend();
+        if (backend.saveSurveyResponse(rating, recommend, comments)) {
+            System.out.println("Thank you for your feedback!");
+        } else {
+            System.out.println("Error saving feedback. Try again.");
+        }
+
+        scanner.close();
+    }
+}
